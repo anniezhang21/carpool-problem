@@ -8,7 +8,10 @@ from math import inf
 import utils
 
 
-INPUT_FILENAME = "rand_input.txt"
+INPUT_FILENAME = "rand_input.txt" # Path to filename used in main function.
+
+# How long the tsp function runs (doesnt seem to be any improvements after 30s)
+TIMEOUT = 40 # seconds
 
 
 def create_data_model():
@@ -95,7 +98,7 @@ def get_tsp_result(distance_matrix, start):
         routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC)
     search_parameters.local_search_metaheuristic = (
         routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH)
-    search_parameters.time_limit.seconds = 40
+    search_parameters.time_limit.seconds = TIMEOUT
 
     # Solve the problem.
     assignment = routing.SolveWithParameters(search_parameters)
@@ -135,7 +138,7 @@ def main():
         routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC)
     search_parameters.local_search_metaheuristic = (
         routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH)
-    search_parameters.time_limit.seconds = 30
+    search_parameters.time_limit.seconds = TIMEOUT
 
     # Solve the problem.
     assignment = routing.SolveWithParameters(search_parameters)
