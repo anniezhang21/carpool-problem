@@ -9,6 +9,6 @@ Our solver utilizes an external Traveling Salesman Problem (tsp) solver from Goo
 The modified version of the tsp solver is located in tsp_helper.py.
 
 Additional dependencies:
-ortools
+ortools (https://developers.google.com/optimization/install)
 
 
