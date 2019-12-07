@@ -11,7 +11,7 @@ import utils
 INPUT_FILENAME = "rand_input.txt" # Path to filename used in main function.
 
 # How long the tsp function runs (doesnt seem to be any improvements after 30s)
-TIMEOUT = 40 # seconds
+TIMEOUT = 32 # seconds
 
 
 def create_data_model():

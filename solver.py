@@ -45,6 +45,8 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
 
     # Replace house paths w actual paths from dict to get a valid car tour
     car_tour = get_valid_tour(shortest_tour, sp_lookup)
+    print("original tour:", car_tour)
+
 
     # To start, each TA gets dropped off at their house.
     dropoff_dict = {}
@@ -52,13 +54,25 @@ def solve(list_of_locations, list_of_homes, starting_car_location, adjacency_mat
         if list_of_locations[location_ind] in list_of_homes:
             dropoff_dict[location_ind] = [location_ind]
 
+
     # Replace any (A, B, A) pattern in the tour with just A, where B gets dropped off at A (if applicable)
-    final_tour = remove_single_there_and_backs(car_tour, dropoff_dict)
+    # car_tour = remove_single_there_and_backs(car_tour, dropoff_dict)
+
+
+    # Find all (A, B, ..., B, A) patterns, remove, and rehome displaced TAs
+    pattern_found, start, end = detect_spindle(car_tour)
+    while pattern_found and start != None and end != None:
+        car_tour, next_start = handle_spindle(car_tour, start, end, dropoff_dict)
+        pattern_found, local_start, local_end = detect_spindle(car_tour[next_start:])
+        if pattern_found:
+            start, end = local_start + next_start, local_end + next_start
+        else:
+            start, end = local_start, local_end
 
     # Done
-    print(final_tour)
+    print(car_tour)
     print(dropoff_dict)
-    return final_tour, dropoff_dict
+    return car_tour, dropoff_dict
 
 
 """
@@ -166,6 +180,109 @@ def remove_single_there_and_backs(original_tour, dropoff_dict):
         prev_prev_location = prev_location
         prev_location = location
     return new_tour
+
+
+"""
+Detect the first "there and back" pattern in some input tour (list of ints).
+RETURN: exists: Boolean: Was a pattern found or not?
+        start_index: index at which the spindle starts.
+        end_index: index at which the spindle ends.
+"""
+def detect_spindle(input_tour):
+    exists = False
+    start_ind = None
+    end_ind = None
+    if len(input_tour)< 2:
+        return exists, start_ind, end_ind
+
+    stack = [(0, input_tour[0])]
+    next_to_push = (1, input_tour[1])
+
+    for i, node in enumerate(input_tour):
+        if not stack or i < 2:
+            continue
+        # Found a spindle
+        if node == stack[len(stack) - 1][1]:
+            first_appearance, _ = stack.pop()
+            if not exists:
+                start_ind = first_appearance
+                end_ind = i
+                exists = True
+            else:
+                start_ind -= 1
+                end_ind += 1
+
+        elif not exists:
+            stack.append(next_to_push)
+            next_to_push = (i, node)
+
+        else:
+            break
+    return exists, start_ind, end_ind
+
+
+"""
+Given a car tour and start and stop indices of a spindle, remove the spindle, taking care to 
+rehome TAs and modify the dropoff dict in place.
+
+RETURN: the tour with the spindle removed and the index of where it was removed.
+"""
+def handle_spindle(car_tour, spindle_start, spindle_end, dropoff_dict):
+    print("found a long spindle from {} to {},  pruning...".format(spindle_start, spindle_end))
+    most_recently_seen_tas = None     # (node, [list of TAs], node_index)
+    second_recently_seen_tas = None   # (node, [list of TAs], node_index)
+    seen_tas = set()
+    for i, node in enumerate(car_tour):
+        if i < spindle_start:  # This is so hacky oof
+            continue
+        elif i > spindle_end:
+            break
+        if node in dropoff_dict and node not in seen_tas: #There are TAs here
+            second_recently_seen_tas = most_recently_seen_tas
+            most_recently_seen_tas = (node, dropoff_dict[node], i)
+            seen_tas.add(node)
+
+    # The spindle only contains 1 TA node (at the very end).
+    if second_recently_seen_tas == None or second_recently_seen_tas[0] == spindle_end:
+        pruned_tour = car_tour[:spindle_start] + car_tour[spindle_end:]
+        stub_node = car_tour[spindle_end]
+        if stub_node in dropoff_dict:
+            dropoff_dict[stub_node] += most_recently_seen_tas[1]
+        else:
+            dropoff_dict[stub_node] = most_recently_seen_tas[1]
+        del dropoff_dict[most_recently_seen_tas[0]]
+
+        ind_to_continue_at = spindle_start
+
+    # The spindle contains multiple TA nodes, so only prune up to the second deepest TA node.
+    else:
+        # Redraw spindle start and end to the second deepest TA node.
+        print(most_recently_seen_tas)
+        print(second_recently_seen_tas)
+        new_start_ind = second_recently_seen_tas[2]
+        new_start_node = car_tour[new_start_ind]
+        new_end_ind = new_start_ind
+        for i, node in enumerate(car_tour):
+            if i <= new_start_ind:
+                continue
+            if node == new_start_node:
+                new_end_ind = i
+                break
+        print("multiple TAs in this branch. pruning from {} to {}". format(new_start_ind, new_end_ind))
+
+        ind_to_continue_at = new_start_ind
+        pruned_tour = car_tour[:new_start_ind] + car_tour[new_end_ind:]
+        stub_node = car_tour[new_end_ind]
+        if stub_node in dropoff_dict:
+            dropoff_dict[stub_node] += most_recently_seen_tas[1]
+        else:
+            dropoff_dict[stub_node] = most_recently_seen_tas[1]
+        del dropoff_dict[most_recently_seen_tas[0]]
+
+    print("pruned tour:", pruned_tour)
+    return pruned_tour, ind_to_continue_at
+
+
 
 
 """
