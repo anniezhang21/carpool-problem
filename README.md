@@ -15,12 +15,12 @@ Special inputs:
 ```120_50.in```,
 ```147_50.in```,
 ```147_100.in```,
-```137_200.in```,
+```147_200.in```,
 ```345_50.in```.
 
 For both solvers to run correctly, they must be in the same directory as ```tsp_helper.py```.
 
-For inputs ```184_50.in```, ```184_50.in```, and ```184_50.in```, the output files were manually written.
+For inputs ```184_50.in```, ```184_100.in```, and ```184_200.in```, the output files were manually written.
 
 #### Dependencies:
 All dependencies from the starter code.
