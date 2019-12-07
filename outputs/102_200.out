@@ -1,4 +1,4 @@
-FacultyClub MLK SutardjaDai BancroftLibrary Library FPF HealthServices EastAsianLibrary Evans PhysicsLibrary HearstGym Pimentel NorthGate EarthLibrary Underhill Etcheverry TAAP Manville SocialLibrary BrainImagingCenter WooHonFai Bechtel Bowles AquaticCenter HearstFieldAnnex NewspapersLibrary AnthropologyLibrary StudentUnion LawrenceofScience SproulPlaza Senior EthnicLibrary MelvinLaboratory Investigative MediaCenter UpperHearstParking DonnerLaboratory Hilgard HearstGreekTheatre StowPlaza InternationalHouse Davis FoxCottage Latimer SimpsonCenter MaxwellField AndersenAuditorium VisualCenter PacificFilmArchive Cheit MartinezCommons CesarChavez UniversityHouse VLSB HearstFountain Stanley OptometryLibrary Jacobs BioscienceLibrary Unit3 BerkeleyWayWest LatinAmerican SEAsianLibrary EngineeringLibrary FoundersRock Warren Durant Soda CareerCenter Wheeler Wellman IdaHouse EnergyBuilding OBrien Stephens Birge LeConte SpringerGateway Campbell IRLE BancroftDance Giauque Mulford Hildebrand AlumniHouse Durham ArtHistoryLibrary McCone Boalt LawSchool MSRI Koshland MathLibrary Sproul BanwayBuilding BerkeleyLawLibrary CITRIS Spieker Morrison EarthquakeLibrary FacultyClub
+FacultyClub MLK SutardjaDai BancroftLibrary Library FPF HealthServices EastAsianLibrary Evans PhysicsLibrary HearstGym Pimentel NorthGate EarthLibrary Underhill Etcheverry TAAP Manville SocialLibrary BrainImagingCenter WooHonFai Bechtel Bowles AquaticCenter MSRI LawSchool Boalt AlumniHouse Durham ArtHistoryLibrary McCone HearstFieldAnnex NewspapersLibrary AnthropologyLibrary StudentUnion LawrenceofScience SproulPlaza Senior EthnicLibrary MelvinLaboratory Investigative MediaCenter UpperHearstParking DonnerLaboratory Hilgard HearstGreekTheatre StowPlaza InternationalHouse Davis FoxCottage Latimer SimpsonCenter MaxwellField AndersenAuditorium VisualCenter PacificFilmArchive Cheit MartinezCommons CesarChavez UniversityHouse VLSB HearstFountain Stanley OptometryLibrary Jacobs BioscienceLibrary Unit3 BerkeleyWayWest LatinAmerican SEAsianLibrary EngineeringLibrary FoundersRock Warren Durant Soda CareerCenter Wheeler Wellman IdaHouse EnergyBuilding OBrien Stephens Birge LeConte SpringerGateway Campbell IRLE BancroftDance Giauque Mulford Hildebrand MathLibrary Koshland Sproul BanwayBuilding BerkeleyLawLibrary CITRIS Spieker Morrison EarthquakeLibrary FacultyClub
 100
 FacultyClub FacultyClub
 MLK MLK
@@ -24,6 +24,13 @@ WooHonFai WooHonFai
 Bechtel Bechtel
 Bowles Bowles
 AquaticCenter AquaticCenter
+MSRI MSRI
+LawSchool LawSchool
+Boalt Boalt
+AlumniHouse AlumniHouse
+Durham Durham
+ArtHistoryLibrary ArtHistoryLibrary
+McCone McCone
 HearstFieldAnnex HearstFieldAnnex
 NewspapersLibrary NewspapersLibrary
 AnthropologyLibrary AnthropologyLibrary
@@ -84,15 +91,8 @@ BancroftDance BancroftDance
 Giauque Giauque
 Mulford Mulford
 Hildebrand Hildebrand
-AlumniHouse AlumniHouse
-Durham Durham
-ArtHistoryLibrary ArtHistoryLibrary
-McCone McCone
-Boalt Boalt
-LawSchool LawSchool
-MSRI MSRI
-Koshland Koshland
 MathLibrary MathLibrary
+Koshland Koshland
 Sproul Sproul
 BanwayBuilding BanwayBuilding
 BerkeleyLawLibrary BerkeleyLawLibrary
