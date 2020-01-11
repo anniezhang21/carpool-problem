@@ -5,7 +5,9 @@ Annie Zhang, Ada Hu, Lily Sai
 
 #### Problem Statement
 You are given an undirected graph G = (L,E) where each vertex in L is a location. You are also given a starting location s, and a list H of unique locations that correspond to homes. The weight of each edge (u,v) is the length of the road between locations u and v, and each home in H denotes a location that is inhabited by a TA (teaching assistant). Traveling along a road takes energy, and the amount of energy expended is proportional to the length of the road. For every unit of distance traveled, the driver of the car expends 32 units of energy, and a walking TA expends 1 unit of energy. The car must start and end at s, and every TA must return to their home in H.
+
 You must return a list of vertices vi that is the tour taken by the car (cycle with repetitions allowed), as well as a list of drop-off locations at which the TAs get off. You may only drop students off at vertices visited by the car, and multiple TAs can be dropped off at the same location.
+
 We’d like you to produce a route and sequence of drop-offs that minimizes total energy expenditure, which is the sum of the driver’s energy spent driving and the total energy that all of the TAs spend walking. TAs do not expend any energy while sitting in the car. Assume that TAs will take the shortest path home from whichever location they are dropped off at.
 
 #### Algorithm Overview
@@ -32,6 +34,7 @@ For inputs ```184_50.in```, ```184_100.in```, and ```184_200.in```, the output f
 
 #### Dependencies:
 ```networkx``` (https://networkx.github.io/documentation/stable)
+
 ```ortools``` (https://developers.google.com/optimization/install)
 
 Our solver utilizes an external Traveling Salesman Problem (tsp) solver from Google's ```ortools``` library.
