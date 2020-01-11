@@ -1,5 +1,5 @@
 # project-fa19
-CS 170 Fall 2019 Project
+CS 170 (Efficient Algorithms) - Fall 2019 Project
 
 Annie Zhang, Ada Hu, Lily Sai
 
